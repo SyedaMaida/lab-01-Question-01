@@ -1,18 +1,31 @@
 #include <stdio.h>
-int fib(int);
-int main(){
-    int n;
-    printf("Fibonacci Series\n");
-    printf("Enter the nth term of fibonacci series: ");
-    scanf("%d",&n);
-    printf(" the %d term in the fibonacci series is %d",n,fib(n));
+
+// Function to calculate the nth Fibonacci number
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
 }
-int fib(int n){
-    if(n==0){
-        return 0;
+int printFibonacciSeries(int n) {
+    printf("Fibonacci Series up to %d terms: ", n);
+    for (int i = 0; i < n; i++) {
+        printf("%d ", fibonacci(i));
     }
-    if(n==1||n==2){
-        return 1;
+    printf("\n");
+}
+
+int main() {
+    int n;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    if (n < 0) {
+        printf("Please enter a non-negative integer for n.\n");
+        return 1; 
     }
-    return fib(n-1)+fib(n-2);
+    printf("The %dth Fibonacci number is: %d\n", n, fibonacci(n));
+    printFibonacciSeries(n);
+
+    return 0;
 }
